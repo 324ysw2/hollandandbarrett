@@ -1,11 +1,11 @@
 # final_project
 
-화장품 리뷰 데이터에서 제품별 핵심 리뷰 문장과 키워드를 뽑고, KoSentenceBERT로 문장 벡터를 만든 뒤 Elasticsearch에 넣는 파이프라인입니다.
+건기식 리뷰 데이터에서 제품별 핵심 리뷰 문장과 키워드를 뽑고, KoSentenceBERT로 문장 벡터를 만든 뒤 Elasticsearch에 넣는 파이프라인입니다.
 
 ## Pipeline
 
 1. `keyword/key_sentences.py`
-   - 화장품 리뷰 CSV를 읽습니다.
+   - 건기식 리뷰 CSV를 읽습니다.
    - 제품 단위로 리뷰를 묶습니다.
    - KR-WordRank로 제품별 핵심 키워드와 대표 리뷰 문장을 추출합니다.
    - 결과 CSV를 `data/cosmetic_keysentences_날짜.csv`로 저장합니다.
@@ -71,6 +71,5 @@ python elastic_util\data_bulk.py --recreate
 
 ## Notes
 
-- `keyword/key_sentences.py`의 stopwords는 화장품 리뷰 기준입니다. `피부`, `제품`, `사용`, `구매`, `배송`, `향`, `크림`, `토너`처럼 너무 흔한 단어는 대표 키워드에서 제외합니다.
+- `keyword/key_sentences.py`의 stopwords는 건기식 리뷰 기준입니다. 
 - Elasticsearch에서 `nori_tokenizer`를 사용하므로 nori analysis plugin이 필요합니다.
-- 기존 음식점용 필드였던 `res_name`, `adress`, `comment_vector`는 화장품용 `brand_name`, `product_name`, `category`, `review_vector` 구조로 바뀌었습니다.
