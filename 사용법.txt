@@ -1,0 +1,12 @@
+즉 정확히 말하면:
+analyze_cosmetic_reviews_local.py는
+C:\projects\db\땀띠화장품2의 JSON을 직접 읽음
+
+build_brand_semantic_recommender.py는
+JSON에서 뽑아 정리한 ttamtti2_local_review_analysis.csv를 읽음
+
+그래서 JSON이 바뀌거나 새 브랜드 JSON이 추가되면 순서는 이렇게 해야 해.
+cd C:\projects\db\final_project
+python analyze_cosmetic_reviews_local.py
+python build_brand_semantic_recommender.py
+첫 번째가 JSON 재분석, 두 번째가 의미 기반 추천 재생성이야.

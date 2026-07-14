@@ -1,0 +1,22 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    container_name: final-project-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    ports:
+      - "9200:9200"
+    volumes:
+      - final_project_esdata:/usr/share/elasticsearch/data
+    command: >
+      bash -lc "
+        if ! bin/elasticsearch-plugin list | grep -q analysis-nori; then
+          bin/elasticsearch-plugin install --batch analysis-nori;
+        fi;
+        exec /usr/local/bin/docker-entrypoint.sh eswrapper
+      "
+
+volumes:
+  final_project_esdata:
